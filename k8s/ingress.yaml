@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: potato-ingress
+  namespace: flaming
+  annotations:
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/subnets:  "subnet-030dfb9d381dd232e, subnet-0fc4852ecc452a3af"
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP" : 80}]'
+    alb.ingress.kubernetes.io/healthcheck-path: "/check"
+    alb.ingress.kubernetes.io/healthcheck-port: "80"
+    alb.ingress.kubernetes.io/target-type: ip
+spec:
+  ingressClassName: alb
+  rules:
+    - http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: potato-service
+                port:
+                  number: 80

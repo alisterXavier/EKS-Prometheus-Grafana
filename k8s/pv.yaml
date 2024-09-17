@@ -1,0 +1,26 @@
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: pv1
+spec:
+  storageClassName:
+  capacity:
+    storage: 2Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/mnt/kubernetes/pv1"
+
+---
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: pv2
+spec:
+  storageClassName:
+  capacity:
+    storage: 8Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/mnt/kubernetes/pv2"
